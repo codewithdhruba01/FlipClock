@@ -45,7 +45,7 @@ Access all settings by clicking the settings icon at the bottom-right corner:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/codewithdhruba01/FlipClock.git
 cd flipclock
 ```
 
@@ -127,12 +127,16 @@ The modular component structure makes it easy to add new features:
 
 ## License
 
-MIT License - feel free to use this project for personal or commercial purposes.
+This project is licensed under the [MIT License](LICENSE).
 
-## Credits
+---
 
-Designed and developed with focus on minimalism and user experience.
+<div align="center">
+   
+⭐ If you find this project useful, please give it a star!
 
-## Contributing
+**Built with ❤️ by Dhrubaraj Pati for developers**
 
-Contributions are welcome! Please feel free to submit a Pull Request."# FlipClock" 
+[Website](https://codewithdhruba.vercel.app/) • [GitHub](https://github.com/codewithdhruba01) • [Twitter](https://x.com/codewithdhruba)
+
+</div>
