@@ -70,10 +70,8 @@ export default function FlipClock() {
     let hours = time.getHours();
     const minutes = time.getMinutes();
     const seconds = time.getSeconds();
-    let period = '';
 
     if (timeFormat === '12') {
-      period = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12 || 12;
     }
 
@@ -81,76 +79,79 @@ export default function FlipClock() {
       hours: hours.toString().padStart(2, '0'),
       minutes: minutes.toString().padStart(2, '0'),
       seconds: seconds.toString().padStart(2, '0'),
-      period,
     };
   };
 
-  const { hours, minutes, seconds, period } = getFormattedTime();
+  const { hours, minutes, seconds } = getFormattedTime();
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center justify-center transition-colors duration-500 ${
-        theme === 'dark' ? 'bg-black' : 'bg-gray-100'
+      className={`min-h-screen w-screen flex flex-col items-center justify-center transition-colors duration-500 overflow-hidden ${
+        theme === 'dark' ? 'bg-black' : 'bg-white'
       }`}
     >
-      <div
-        className="flex flex-col items-center gap-8 sm:gap-12"
-        style={{
-          transform: `scale(${clockSize / 100})`,
-          transformOrigin: 'center',
-          transition: 'transform 0.3s ease',
-        }}
-      >
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-          <div className="flex gap-1 sm:gap-2">
-            <FlipDigit value={hours[0]} theme={theme} />
-            <FlipDigit value={hours[1]} theme={theme} />
-          </div>
+      <div className="w-full h-full flex items-center justify-center px-4 py-8">
+        <div
+          className="flex flex-col items-center gap-4 sm:gap-6 w-full"
+          style={{
+            transform: `scale(${clockSize / 100})`,
+            transformOrigin: 'center',
+            transition: 'transform 0.3s ease',
+          }}
+        >
+          <div className="flex items-center justify-center gap-0">
+            <div className="flex gap-1 sm:gap-2">
+              <FlipDigit value={hours[0]} theme={theme} />
+              <FlipDigit value={hours[1]} theme={theme} />
+            </div>
 
-          <div className={`text-4xl sm:text-6xl md:text-8xl font-bold ${
-            theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
-          } mb-8 sm:mb-12`}>
-            :
-          </div>
+            <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
+              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+              <div className={`w-1 h-6 sm:h-8 my-1 ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+            </div>
 
-          <div className="flex gap-1 sm:gap-2">
-            <FlipDigit value={minutes[0]} theme={theme} />
-            <FlipDigit value={minutes[1]} theme={theme} />
-          </div>
+            <div className="flex gap-1 sm:gap-2">
+              <FlipDigit value={minutes[0]} theme={theme} />
+              <FlipDigit value={minutes[1]} theme={theme} />
+            </div>
 
-          <div className={`text-4xl sm:text-6xl md:text-8xl font-bold ${
-            theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
-          } mb-8 sm:mb-12`}>
-            :
-          </div>
+            <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
+              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+              <div className={`w-1 h-6 sm:h-8 my-1 ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+              }`} />
+            </div>
 
-          <div className="flex gap-1 sm:gap-2">
-            <FlipDigit value={seconds[0]} theme={theme} />
-            <FlipDigit value={seconds[1]} theme={theme} />
+            <div className="flex gap-1 sm:gap-2">
+              <FlipDigit value={seconds[0]} theme={theme} />
+              <FlipDigit value={seconds[1]} theme={theme} />
+            </div>
           </div>
         </div>
-
-        {timeFormat === '12' && (
-          <div
-            className={`text-2xl sm:text-4xl md:text-5xl font-bold tracking-wider ${
-              theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
-            }`}
-          >
-            {period}
-          </div>
-        )}
       </div>
 
       <button
         onClick={() => setSettingsOpen(true)}
-        className={`fixed bottom-8 right-8 p-4 rounded-full transition-all duration-300 hover:scale-110 ${
+        className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full transition-all duration-300 hover:scale-110 ${
           theme === 'dark'
             ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
-            : 'bg-white hover:bg-gray-200 text-gray-700'
-        } shadow-lg`}
+            : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+        } shadow-lg z-40`}
         aria-label="Settings"
       >
-        <Settings className="w-6 h-6" />
+        <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
       <SettingsDialog
