@@ -108,7 +108,7 @@ export default function FlipClock() {
         >
           {/* Clock Digits */}
           <div className="flex items-center justify-center gap-0">
-            <div className="flex gap-1 sm:gap-2">
+            <div className="flex gap-1 sm:gap-3">
               <FlipDigit value={hours[0]} theme={theme} />
               <FlipDigit value={hours[1]} theme={theme} />
             </div>
@@ -125,7 +125,7 @@ export default function FlipClock() {
               />
             </div>
 
-            <div className="flex gap-1 sm:gap-2">
+            <div className="flex gap-1 sm:gap-3">
               <FlipDigit value={minutes[0]} theme={theme} />
               <FlipDigit value={minutes[1]} theme={theme} />
             </div>
@@ -142,23 +142,23 @@ export default function FlipClock() {
               />
             </div>
 
-            <div className="flex gap-1 sm:gap-2">
+            <div className="flex gap-1 sm:gap-3">
               <FlipDigit value={seconds[0]} theme={theme} />
               <FlipDigit value={seconds[1]} theme={theme} />
             </div>
           </div>
 
           {/* Period + Date Centered */}
-          <div className="flex flex-col items-center mt-6">
+          <div className="flex flex-col items-center mt-3 sm:mt-2">
             <div
-              className={`text-2xl sm:text-3xl font-semibold tracking-wide ${
+              className={`text-2xl sm:text-3xl font-bold tracking-wide ${
                 theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
               }`}
             >
               {period}
             </div>
             <div
-              className={`text-sm sm:text-base font-medium mt-2 ${
+              className={`text-sm sm:text-base font-sans font-bold mt-1 sm:mt-1 ${
                 theme === 'dark' ? 'text-gray-600' : 'text-gray-500'
               }`}
             >
@@ -193,7 +193,7 @@ export default function FlipClock() {
         onClockSizeChange={handleClockSizeChange}
         isFullscreen={isFullscreen}
         onToggleFullscreen={toggleFullscreen}
-        onOpenStopwatch={() => router.push('/stopwatch')} // 👈 Added handler
+        onOpenStopwatch={() => router.push('/stopwatch')}
       />
     </div>
   );
