@@ -40,8 +40,7 @@ export default function FlipClock() {
       setIsFullscreen(!!document.fullscreenElement);
     };
     document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () =>
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
   const toggleFullscreen = async () => {
@@ -115,9 +114,15 @@ export default function FlipClock() {
             </div>
 
             <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
-              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
-              <div className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
-              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
+              <div
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
+              <div
+                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
+              <div
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
             </div>
 
             <div className="flex gap-1 sm:gap-2">
@@ -126,9 +131,15 @@ export default function FlipClock() {
             </div>
 
             <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
-              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
-              <div className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
-              <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
+              <div
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
+              <div
+                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
+              <div
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+              />
             </div>
 
             <div className="flex gap-1 sm:gap-2">
@@ -159,16 +170,16 @@ export default function FlipClock() {
 
       {/* Settings Button */}
       <button
-  onClick={() => setSettingsOpen(true)}
-  className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full transition-all duration-300 hover:scale-110 ${
-    theme === 'dark'
-      ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
-      : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-  } shadow-lg z-40`}
-  aria-label="Settings"
->
-  <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
-</button>
+        onClick={() => setSettingsOpen(true)}
+        className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full transition-all duration-300 hover:scale-110 ${
+          theme === 'dark'
+            ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+            : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+        } shadow-lg z-40`}
+        aria-label="Settings"
+      >
+        <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
 
       {/* Settings Dialog */}
       <SettingsDialog
