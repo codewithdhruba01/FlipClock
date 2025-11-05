@@ -36,7 +36,9 @@ export default function FlipDigit({ value, theme }: FlipDigitProps) {
           boxShadow: `inset 0 0 20px ${theme === 'dark' ? 'rgba(0,0,0,0.8)' : 'rgba(0,0,0,0.1)'}`,
         }}
       >
-        <div className={`absolute inset-0 flex items-center justify-center ${textColor} text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-none`}>
+        <div
+          className={`absolute inset-0 flex items-center justify-center ${textColor} text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-none`}
+        >
           <div
             style={{
               animation: isFlipping ? 'flip 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
@@ -47,18 +49,24 @@ export default function FlipDigit({ value, theme }: FlipDigitProps) {
           </div>
         </div>
 
-        <div className={`absolute top-1/2 left-0 right-0 h-1 transform -translate-y-1/2 ${
-          theme === 'dark' ? 'bg-black' : 'bg-gray-400'
-        }`} />
+        <div
+          className={`absolute top-1/2 left-0 right-0 h-1 transform -translate-y-1/2 ${
+            theme === 'dark' ? 'bg-black' : 'bg-gray-400'
+          }`}
+        />
 
         <div
           className={`absolute top-0 left-0 right-0 bottom-1/2 ${
-            theme === 'dark' ? 'bg-gradient-to-b from-transparent via-transparent to-black/20' : 'bg-gradient-to-b from-transparent via-transparent to-black/10'
+            theme === 'dark'
+              ? 'bg-gradient-to-b from-transparent via-transparent to-black/20'
+              : 'bg-gradient-to-b from-transparent via-transparent to-black/10'
           }`}
         />
         <div
           className={`absolute bottom-0 left-0 right-0 top-1/2 ${
-            theme === 'dark' ? 'bg-gradient-to-t from-transparent via-transparent to-black/20' : 'bg-gradient-to-t from-transparent via-transparent to-black/10'
+            theme === 'dark'
+              ? 'bg-gradient-to-t from-transparent via-transparent to-black/20'
+              : 'bg-gradient-to-t from-transparent via-transparent to-black/10'
           }`}
         />
       </div>
