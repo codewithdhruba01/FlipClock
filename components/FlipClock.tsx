@@ -116,13 +116,13 @@ export default function FlipClock() {
 
             <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
               <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
               <div
-                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
               <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
             </div>
 
@@ -133,13 +133,13 @@ export default function FlipClock() {
 
             <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
               <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
               <div
-                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
               <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
+                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
             </div>
 
@@ -152,15 +152,15 @@ export default function FlipClock() {
           {/* Period + Date Centered */}
           <div className="flex flex-col items-center mt-3 sm:mt-2">
             <div
-              className={`text-2xl sm:text-3xl font-bold tracking-wide ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              className={`text-2xl sm:text-3xl font-bold tracking-wide transition-colors duration-500 ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}
             >
               {period}
             </div>
             <div
-              className={`text-sm sm:text-base font-sans font-bold mt-1 sm:mt-1 ${
-                theme === 'dark' ? 'text-gray-600' : 'text-gray-500'
+              className={`text-sm sm:text-base font-sans font-bold mt-1 sm:mt-1 transition-colors duration-500 ${
+                theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
               }`}
             >
               {dateStr}
