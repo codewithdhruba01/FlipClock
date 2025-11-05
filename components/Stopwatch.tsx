@@ -5,6 +5,7 @@ import { Settings } from 'lucide-react';
 import FlipDigit from './FlipDigit';
 import SettingsDialog from './SettingsDialog';
 import StyledButton from './ui/StyledButton';
+import StyledSettingsButton from './button/StyledSettingsButton';
 
 type TimeFormat = '12' | '24';
 type Theme = 'light' | 'dark';
@@ -156,17 +157,7 @@ export default function Stopwatch() {
       </div>
 
       {/* Settings Button */}
-      <button
-        onClick={() => setSettingsOpen(true)}
-        className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full transition-all duration-300 hover:scale-110 ${
-          theme === 'dark'
-            ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
-            : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-        } shadow-lg z-40`}
-        aria-label="Settings"
-      >
-        <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
+      <StyledSettingsButton onClick={() => setSettingsOpen(true)} theme={theme} />
 
       {/* Settings Dialog */}
       <SettingsDialog
