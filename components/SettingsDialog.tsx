@@ -3,7 +3,7 @@
 import { Moon, Sun, Clock, ZoomIn, ZoomOut, Maximize2, Minimize2, Timer } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/button/button';
 import { Separator } from '@/components/ui/separator';
 import { useRouter } from 'next/navigation';
 

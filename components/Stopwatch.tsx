@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Settings } from 'lucide-react';
 import FlipDigit from './FlipDigit';
 import SettingsDialog from './SettingsDialog';
-import StyledButton from './ui/StyledButton';
+import StyledButton from './button/StyledButton';
 import StyledSettingsButton from './button/StyledSettingsButton';
 
 type TimeFormat = '12' | '24';
