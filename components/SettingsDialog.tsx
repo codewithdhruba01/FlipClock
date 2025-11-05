@@ -1,12 +1,7 @@
 'use client';
 
 import { Moon, Sun, Clock, ZoomIn, ZoomOut, Maximize2, Minimize2, Timer } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -26,7 +21,7 @@ interface SettingsDialogProps {
   onClockSizeChange: (size: number) => void;
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
-  onOpenStopwatch?: () => void; // optional for compatibility
+  onOpenStopwatch?: () => void;
 }
 
 export default function SettingsDialog({
@@ -52,7 +47,7 @@ export default function SettingsDialog({
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          {/* 🔁 View Mode (Time / Stopwatch) */}
+          {/*View Mode (Time / Stopwatch) */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
@@ -80,7 +75,7 @@ export default function SettingsDialog({
 
           <Separator />
 
-          {/* 🌗 Theme */}
+          {/* Theme */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Moon className="w-4 h-4" />
@@ -108,7 +103,7 @@ export default function SettingsDialog({
 
           <Separator />
 
-          {/* 🕒 Time Format */}
+          {/* Time Format */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
@@ -134,7 +129,7 @@ export default function SettingsDialog({
 
           <Separator />
 
-          {/* 🔍 Clock Size */}
+          {/* Clock Size */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
@@ -173,17 +168,13 @@ export default function SettingsDialog({
 
           <Separator />
 
-          {/* 🖥️ Fullscreen */}
+          {/* Fullscreen */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Maximize2 className="w-4 h-4" />
               <span>Display</span>
             </div>
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={onToggleFullscreen}
-            >
+            <Button variant="outline" className="w-full" onClick={onToggleFullscreen}>
               {isFullscreen ? (
                 <>
                   <Minimize2 className="w-4 h-4 mr-2" />
