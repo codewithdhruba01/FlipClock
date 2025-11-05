@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Settings, Clock } from 'lucide-react';
-import Link from 'next/link';
+import { Settings } from 'lucide-react';
 import FlipDigit from './FlipDigit';
 import SettingsDialog from './SettingsDialog';
+import styled from 'styled-components';
 
 type TimeFormat = '12' | '24';
 type Theme = 'light' | 'dark';
@@ -18,35 +18,35 @@ export default function Stopwatch() {
   const [clockSize, setClockSize] = useState(100);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Stopwatch logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
-
     if (isRunning) {
       interval = setInterval(() => {
         setElapsed((prev) => prev + 1);
       }, 1000);
     }
-
     return () => clearInterval(interval);
   }, [isRunning]);
 
+  // Load saved settings
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
     const savedFormat = localStorage.getItem('timeFormat') as TimeFormat;
     const savedSize = localStorage.getItem('clockSize');
-
     if (savedTheme) setTheme(savedTheme);
     if (savedFormat) setTimeFormat(savedFormat);
     if (savedSize) setClockSize(Number(savedSize));
   }, []);
 
+  // Fullscreen check
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
-
     document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    return () =>
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
   const toggleFullscreen = async () => {
@@ -102,40 +102,21 @@ export default function Stopwatch() {
             transition: 'transform 0.3s ease',
           }}
         >
+          {/* Time Digits */}
           <div className="flex items-center justify-center gap-0">
             <div className="flex gap-1 sm:gap-2">
               <FlipDigit value={hours[0]} theme={theme} />
               <FlipDigit value={hours[1]} theme={theme} />
             </div>
 
-            <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
-              <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-              <div
-                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-              <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-            </div>
+            <Colon theme={theme} />
 
             <div className="flex gap-1 sm:gap-2">
               <FlipDigit value={minutes[0]} theme={theme} />
               <FlipDigit value={minutes[1]} theme={theme} />
             </div>
 
-            <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
-              <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-              <div
-                className={`w-1 h-6 sm:h-8 my-1 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-              <div
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-            </div>
+            <Colon theme={theme} />
 
             <div className="flex gap-1 sm:gap-2">
               <FlipDigit value={seconds[0]} theme={theme} />
@@ -144,35 +125,35 @@ export default function Stopwatch() {
           </div>
 
           {/* Stopwatch Controls */}
-          <div className="flex gap-2 sm:gap-4">
-            <button
-              onClick={() => setIsRunning(!isRunning)}
-              className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 ${
+          <div className="flex gap-4 sm:gap-6">
+            <StyledButton
+              $outline={theme === 'dark' ? '#000' : '#000'}
+              $color={
                 isRunning
                   ? theme === 'dark'
-                    ? 'bg-red-600 hover:bg-red-700 text-white'
-                    : 'bg-red-500 hover:bg-red-600 text-white'
+                    ? '#ff4d4d'
+                    : '#ff6666'
                   : theme === 'dark'
-                    ? 'bg-green-600 hover:bg-green-700 text-white'
-                    : 'bg-green-500 hover:bg-green-600 text-white'
-              }`}
+                  ? '#00cc66'
+                  : '#00e676'
+              }
+              onClick={() => setIsRunning(!isRunning)}
             >
-              {isRunning ? 'Stop' : 'Start'}
-            </button>
+              <span className="button_top">
+                {isRunning ? 'Stop' : 'Start'}
+              </span>
+            </StyledButton>
 
-            <button
+            <StyledButton
+              $outline={theme === 'dark' ? '#000' : '#000'}
+              $color={theme === 'dark' ? '#777' : '#ddd'}
               onClick={() => {
                 setIsRunning(false);
                 setElapsed(0);
               }}
-              className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 ${
-                theme === 'dark'
-                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
-                  : 'bg-gray-300 hover:bg-gray-400 text-gray-800'
-              }`}
             >
-              Reset
-            </button>
+              <span className="button_top">Reset</span>
+            </StyledButton>
           </div>
         </div>
       </div>
@@ -202,8 +183,66 @@ export default function Stopwatch() {
         onClockSizeChange={handleClockSizeChange}
         isFullscreen={isFullscreen}
         onToggleFullscreen={toggleFullscreen}
-        onOpenStopwatch={() => {}} // Not needed here, just to match type
+        onOpenStopwatch={() => {}}
       />
     </div>
   );
 }
+
+/* Small reusable component for colons (:) */
+const Colon = ({ theme }: { theme: Theme }) => (
+  <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
+    <div
+      className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+      }`}
+    />
+    <div
+      className={`w-1 h-6 sm:h-8 my-1 ${
+        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+      }`}
+    />
+    <div
+      className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+        theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'
+      }`}
+    />
+  </div>
+);
+
+/* Styled 3D Button */
+const StyledButton = styled.button<{ $outline: string; $color: string }>`
+  --button_radius: 0.75em;
+  --button_color: ${(p) => p.$color};
+  --button_outline_color: ${(p) => p.$outline};
+
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  transition: transform 0.2s ease;
+
+  .button_top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 2em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.25em);
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+  }
+
+  &:hover .button_top {
+    transform: translateY(-0.4em);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active .button_top {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`;
