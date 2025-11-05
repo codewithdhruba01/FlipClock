@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Settings } from 'lucide-react';
 import FlipDigit from './FlipDigit';
 import SettingsDialog from './SettingsDialog';
-import styled from 'styled-components';
+import StyledButton from './ui/StyledButton';
 
 type TimeFormat = '12' | '24';
 type Theme = 'light' | 'dark';
@@ -18,7 +18,6 @@ export default function Stopwatch() {
   const [clockSize, setClockSize] = useState(100);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Stopwatch logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning) {
@@ -139,9 +138,7 @@ export default function Stopwatch() {
               }
               onClick={() => setIsRunning(!isRunning)}
             >
-              <span className="button_top">
-                {isRunning ? 'Stop' : 'Start'}
-              </span>
+              {isRunning ? 'Stop' : 'Start'}
             </StyledButton>
 
             <StyledButton
@@ -152,7 +149,7 @@ export default function Stopwatch() {
                 setElapsed(0);
               }}
             >
-              <span className="button_top">Reset</span>
+              Reset
             </StyledButton>
           </div>
         </div>
@@ -209,40 +206,3 @@ const Colon = ({ theme }: { theme: Theme }) => (
     />
   </div>
 );
-
-/* Styled 3D Button */
-const StyledButton = styled.button<{ $outline: string; $color: string }>`
-  --button_radius: 0.75em;
-  --button_color: ${(p) => p.$color};
-  --button_outline_color: ${(p) => p.$outline};
-
-  font-size: 17px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  border-radius: var(--button_radius);
-  background: var(--button_outline_color);
-  transition: transform 0.2s ease;
-
-  .button_top {
-    display: block;
-    box-sizing: border-box;
-    border: 2px solid var(--button_outline_color);
-    border-radius: var(--button_radius);
-    padding: 0.75em 2em;
-    background: var(--button_color);
-    color: var(--button_outline_color);
-    transform: translateY(-0.25em);
-    transition: transform 0.1s ease, box-shadow 0.2s ease;
-  }
-
-  &:hover .button_top {
-    transform: translateY(-0.4em);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  &:active .button_top {
-    transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  }
-`;
