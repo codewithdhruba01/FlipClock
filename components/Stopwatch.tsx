@@ -166,17 +166,17 @@ export default function Stopwatch() {
       </div>
 
       {/* Settings Button */}
-      <button
-        onClick={() => setSettingsOpen(true)}
-        className={`fixed top-4 right-4 sm:top-8 sm:right-8 p-3 sm:p-4 rounded-full transition-all duration-300 hover:scale-110 ${
-          theme === 'dark'
-            ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
-            : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-        } shadow-lg z-40`}
-        aria-label="Settings"
-      >
-        <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
+   <button
+  onClick={() => setSettingsOpen(true)}
+  className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full border transition-all duration-300 hover:scale-110 ${
+    theme === 'dark'
+      ? 'bg-gray-800 hover:bg-gray-900 text-gray-300 border-gray-200'
+      : 'bg-gray-200 hover:bg-gray-300 text-gray-800 border-gray-400'
+  } shadow-lg z-40`}
+  aria-label="Settings"
+>
+  <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
+</button>
 
       {/* Settings Dialog */}
       <SettingsDialog
