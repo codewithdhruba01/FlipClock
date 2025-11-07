@@ -1,26 +1,25 @@
-# FlipClock - Aesthetic Digital Clock
+# FlipClock - Minimal Digital Clock
 
 A beautiful, minimal digital clock web application built with Next.js that helps you focus and relax with its aesthetic flip animation design.
 
 ## Features
 
-### Core Functionality
+### Clock Page
 - **Real-time Clock Display**: Shows current time with smooth updates every second
+- **Live Date**: Current date displayed in bottom-right corner
 - **Flip Animation**: Beautiful flip card animation when digits change, mimicking a physical flip clock
 - **Fully Responsive**: Works seamlessly across all devices (mobile, tablet, desktop)
+- **Navigation**: Quick access to Stopwatch page with Watch icon
 
-### Customization Options
-Access all settings by clicking the settings icon at the bottom-right corner:
+### Stopwatch Page
+- **Precise Time Tracking**: Tracks time with seconds precision
+- **Start/Stop Controls**: Easy button to start and pause stopwatch
+- **Reset Function**: Reset timer back to 00:00:00
+- **Same UI Design**: Matches clock page aesthetic with flip animation digits
+- **Navigation**: Quick access back to Clock page
 
-#### 1. Theme Selection
-- **Light Mode**: Clean, bright interface for daytime use
-- **Dark Mode**: Eye-friendly dark interface for nighttime use
-- Theme preference is saved locally and persists across sessions
-
-#### 2. Time Format
-- **12-Hour Format**: Traditional AM/PM display
-- **24-Hour Format**: Military/international time format
-- Format preference is saved locally
+### Customization Options (Available on Both Pages)
+Access all settings by clicking the settings icon at the right corner:
 
 #### 3. Clock Size Control
 - **Zoom In/Out**: Scale the clock from 50% to 150%
@@ -40,6 +39,26 @@ Access all settings by clicking the settings icon at the bottom-right corner:
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
+- **Storage**: Browser LocalStorage for preferences
+
+## Project Structure
+
+```
+flipclock/
+├── app/
+│   ├── page.tsx                # Clock page
+│   ├── stopwatch/
+│   │   └── page.tsx            # Stopwatch page
+│   ├── layout.tsx              # Root layout
+│   └── globals.css             # Global styles
+├── components/
+│   ├── FlipClock.tsx           # Clock page component
+│   ├── Stopwatch.tsx           # Stopwatch page component
+│   ├── FlipDigit.tsx           # Flip digit animation component
+│   ├── SettingsDialog.tsx      # Settings panel (shared)
+│   └── ui/                     # shadcn/ui components
+└── README.md
+```
 
 ## Installation
 
@@ -68,66 +87,13 @@ npm run build
 npm run start
 ```
 
-## Project Structure
-
-```
-flipclock/
-├── app/
-│   ├── page.tsx          # Main page component
-│   ├── layout.tsx        # Root layout
-│   └── globals.css       # Global styles
-├── components/
-│   ├── FlipClock.tsx     # Main clock component with state management
-│   ├── FlipDigit.tsx     # Individual flip digit with animation
-│   └── SettingsDialog.tsx # Settings panel component
-└── README.md
-```
-
-## Component Details
-
-### FlipClock Component
-- Manages clock state and time updates
-- Handles all user preferences (theme, format, size)
-- Coordinates fullscreen functionality
-- Persists settings to localStorage
-
-### FlipDigit Component
-- Renders individual digit with flip animation
-- Animates when digit value changes
-- Responsive sizing across breakpoints
-- Theme-aware styling
-
-### SettingsDialog Component
-- Provides intuitive settings interface
-- All controls in one place
-- Immediate visual feedback
-- Clean, organized layout
-
-## Key Features Implementation
-
-### Flip Animation
-The flip animation uses CSS transforms and transitions to create a realistic flip effect when digits change. The animation:
-- Rotates the digit card in 3D space
-- Completes in 600ms for smooth visual experience
-- Triggers only when the digit value changes
-
-## Customization
-
-### Changing Colors
-Edit the color values in `FlipDigit.tsx` and `FlipClock.tsx` to customize the theme colors.
-
-### Adjusting Animation Speed
-Modify the `duration` values in the flip animation CSS to change the speed.
-
-### Adding New Features
-The modular component structure makes it easy to add new features:
-- Add new settings in `SettingsDialog.tsx`
-- Implement logic in `FlipClock.tsx`
-- Store preferences in localStorage
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
