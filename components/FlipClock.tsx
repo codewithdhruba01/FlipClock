@@ -118,9 +118,7 @@ export default function FlipClock() {
               <div
                 className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
-              <div
-                className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
+              <div className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
               <div
                 className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
@@ -135,9 +133,7 @@ export default function FlipClock() {
               <div
                 className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
-              <div
-                className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
+              <div className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
               <div
                 className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
               />
