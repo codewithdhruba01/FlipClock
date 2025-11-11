@@ -31,7 +31,9 @@ const StyledButtonBase = styled.button<{ $outline?: string; $color?: string }>`
     background: var(--button_color);
     color: var(--button_outline_color);
     transform: translateY(-0.25em);
-    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.1s ease,
+      box-shadow 0.2s ease;
   }
 
   &:hover .button_top {
@@ -45,12 +47,7 @@ const StyledButtonBase = styled.button<{ $outline?: string; $color?: string }>`
   }
 `;
 
-export default function StyledButton({
-  $outline,
-  $color,
-  children,
-  onClick,
-}: StyledButtonProps) {
+export default function StyledButton({ $outline, $color, children, onClick }: StyledButtonProps) {
   return (
     <StyledButtonBase $outline={$outline} $color={$color} onClick={onClick}>
       <span className="button_top">{children}</span>
