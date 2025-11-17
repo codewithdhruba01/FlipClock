@@ -1,4 +1,6 @@
-# FlipClock - Minimal Digital Clock
+# FlipClock - Aesthetic Digital Clock
+
+![Banner](public/flipclock-cover.png)
 
 A beautiful, minimal digital clock web application built with Next.js that helps you focus and relax with its aesthetic flip animation design.
 
