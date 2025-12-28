@@ -216,24 +216,24 @@ export default function SettingsDialog({
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => onClockSizeChange(Math.max(50, clockSize - 10))}
-                disabled={clockSize <= 50}
+                onClick={() => onClockSizeChange(Math.max(30, clockSize - 10))}
+                disabled={clockSize <= 30}
               >
                 <ZoomOut className="w-4 h-4" />
               </Button>
               <Slider
                 value={[clockSize]}
                 onValueChange={([value]) => onClockSizeChange(value)}
-                min={50}
-                max={150}
+                min={30}
+                max={250}
                 step={10}
                 className="flex-1"
               />
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => onClockSizeChange(Math.min(150, clockSize + 10))}
-                disabled={clockSize >= 150}
+                onClick={() => onClockSizeChange(Math.min(250, clockSize + 10))}
+                disabled={clockSize >= 250}
               >
                 <ZoomIn className="w-4 h-4" />
               </Button>

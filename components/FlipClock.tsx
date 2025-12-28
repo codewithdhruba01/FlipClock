@@ -66,7 +66,6 @@ export default function FlipClock() {
     const now = new Date();
     const currentHours = now.getHours();
     const currentMinutes = now.getMinutes();
-    const currentSeconds = now.getSeconds();
 
     // Compare in the same format as the clock displays
     let displayHours = currentHours;
@@ -75,7 +74,7 @@ export default function FlipClock() {
     }
 
     const currentTime = `${displayHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
-    const isAlarmTime = currentTime === alarmTime && currentSeconds === 0;
+    const isAlarmTime = currentTime === alarmTime;
 
     if (isAlarmTime && !alarmRinging) {
       setAlarmRinging(true);
@@ -277,13 +276,11 @@ export default function FlipClock() {
   const getFormattedTime = () => {
     let hours = time.getHours();
     const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
     const period = hours >= 12 ? 'PM' : 'AM';
     if (timeFormat === '12') hours = hours % 12 || 12;
     return {
       hours: hours.toString().padStart(2, '0'),
       minutes: minutes.toString().padStart(2, '0'),
-      seconds: seconds.toString().padStart(2, '0'),
       period,
     };
   };
@@ -297,7 +294,7 @@ export default function FlipClock() {
   };
 
   const timeData = getFormattedTime();
-  const { hours, minutes, seconds, period } = timeData;
+  const { hours, minutes, period } = timeData;
   const dateStr = getFormattedDate();
 
   return (
@@ -310,7 +307,7 @@ export default function FlipClock() {
         <div
           className="flex flex-col items-center gap-4 sm:gap-6 w-full"
           style={{
-            transform: `scale(${clockSize / 100})`,
+            transform: `scale(${Math.max(0.3, Math.min(2.5, clockSize / 100))})`,
             transformOrigin: 'center',
             transition: 'transform 0.3s ease',
           }}
@@ -349,21 +346,6 @@ export default function FlipClock() {
             <div className="flex gap-1 sm:gap-3">
               <FlipDigit value={minutes[0]} theme={theme} />
               <FlipDigit value={minutes[1]} theme={theme} />
-            </div>
-
-            <div className="flex flex-col items-center justify-center mx-2 sm:mx-4">
-              <div
-                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-              <div className={`h-8 sm:h-10 ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`} />
-              <div
-                className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'}`}
-              />
-            </div>
-
-            <div className="flex gap-1 sm:gap-3">
-              <FlipDigit value={seconds[0]} theme={theme} />
-              <FlipDigit value={seconds[1]} theme={theme} />
             </div>
           </div>
 
