@@ -56,14 +56,14 @@ export default function SettingsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Settings</DialogTitle>
+      <DialogContent className="sm:max-w-sm">
+        <DialogHeader className="pb-2">
+          <DialogTitle className="text-lg font-bold">Settings</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <div className="space-y-3 py-2">
           {/*View Mode (Time / Stopwatch) */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
               <span>View Mode</span>
@@ -91,7 +91,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Alarm Settings */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium">
               <AlarmClock className="w-4 h-4" />
               <span>Alarm</span>
@@ -109,7 +109,7 @@ export default function SettingsDialog({
             {alarmEnabled && (
               <>
                 {/* Alarm Time */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-sm text-muted-foreground">Alarm Time</label>
                   <Input
                     type="time"
@@ -120,7 +120,7 @@ export default function SettingsDialog({
                 </div>
 
                 {/* Alarm Tone */}
-                <div className="space-y-3">
+                <div className="space-y-1.5">
                   <div className="flex items-center gap-2 text-sm">
                     <Volume2 className="w-4 h-4" />
                     <span>Alarm Tone</span>
@@ -150,7 +150,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Theme */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Moon className="w-4 h-4" />
               <span>Theme</span>
@@ -178,7 +178,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Time Format */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
               <span>Time Format</span>
@@ -204,7 +204,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Clock Size */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <ZoomIn className="w-4 h-4" />
@@ -243,7 +243,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Fullscreen */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Maximize2 className="w-4 h-4" />
               <span>Display</span>
