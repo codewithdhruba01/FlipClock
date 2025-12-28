@@ -56,14 +56,14 @@ export default function SettingsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-sm transition-all duration-300 ease-out">
-        <DialogHeader className="pb-2 transition-all duration-300 delay-100">
-          <DialogTitle className="text-lg font-bold transition-all duration-300">Settings</DialogTitle>
+      <DialogContent className="sm:max-w-sm transition-all duration-300 ease-out data-[state=closed]:duration-200 data-[state=closed]:ease-in">
+        <DialogHeader className="pb-2 transition-all duration-300 delay-100 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
+          <DialogTitle className="text-lg font-bold transition-all duration-300 data-[state=closed]:duration-200">Settings</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-3 py-2 transition-all duration-300 delay-200">
+        <div className="space-y-3 py-2 transition-all duration-300 delay-200 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
           {/*View Mode (Time / Stopwatch) */}
-          <div className="space-y-1.5 transition-all duration-300 delay-300">
+          <div className="space-y-1.5 transition-all duration-300 delay-300 data-[state=closed]:delay-100 data-[state=closed]:duration-200">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
               <span>View Mode</span>
@@ -91,7 +91,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Alarm Settings */}
-          <div className="space-y-2 transition-all duration-300 delay-[800ms]">
+          <div className="space-y-2 transition-all duration-300 delay-[800ms] data-[state=closed]:delay-0 data-[state=closed]:duration-200">
             <div className="flex items-center gap-2 text-sm font-medium">
               <AlarmClock className="w-4 h-4" />
               <span>Alarm</span>
@@ -150,7 +150,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Theme */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[400ms]">
+          <div className="space-y-1.5 transition-all duration-300 delay-[400ms] data-[state=closed]:delay-75 data-[state=closed]:duration-200">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Moon className="w-4 h-4" />
               <span>Theme</span>
@@ -178,7 +178,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Time Format */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[500ms]">
+          <div className="space-y-1.5 transition-all duration-300 delay-[500ms] data-[state=closed]:delay-50 data-[state=closed]:duration-200">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Clock className="w-4 h-4" />
               <span>Time Format</span>
@@ -204,7 +204,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Clock Size */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[600ms]">
+          <div className="space-y-1.5 transition-all duration-300 delay-[600ms] data-[state=closed]:delay-25 data-[state=closed]:duration-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <ZoomIn className="w-4 h-4" />
@@ -243,7 +243,7 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Fullscreen */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[700ms]">
+          <div className="space-y-1.5 transition-all duration-300 delay-[700ms] data-[state=closed]:delay-10 data-[state=closed]:duration-200">
             <div className="flex items-center gap-2 text-sm font-medium">
               <Maximize2 className="w-4 h-4" />
               <span>Display</span>
