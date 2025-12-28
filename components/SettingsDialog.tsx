@@ -1,14 +1,17 @@
 'use client';
 
-import { Moon, Sun, Clock, ZoomIn, ZoomOut, Maximize2, Minimize2, Timer } from 'lucide-react';
+import { Moon, Sun, Clock, ZoomIn, ZoomOut, Maximize2, Minimize2, Timer, AlarmClock, Volume2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/button/button';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
+import { Switch } from '@/components/ui/switch';
 import { useRouter } from 'next/navigation';
 
 type TimeFormat = '12' | '24';
 type Theme = 'light' | 'dark';
+type AlarmTone = 'default' | 'gentle' | 'classic' | 'digital';
 
 interface SettingsDialogProps {
   open: boolean;
@@ -22,6 +25,12 @@ interface SettingsDialogProps {
   isFullscreen: boolean;
   onToggleFullscreen: () => void;
   onOpenStopwatch?: () => void;
+  alarmEnabled: boolean;
+  onAlarmEnabledChange: (enabled: boolean) => void;
+  alarmTime: string;
+  onAlarmTimeChange: (time: string) => void;
+  alarmTone: AlarmTone;
+  onAlarmToneChange: (tone: AlarmTone) => void;
 }
 
 export default function SettingsDialog({
@@ -35,6 +44,12 @@ export default function SettingsDialog({
   onClockSizeChange,
   isFullscreen,
   onToggleFullscreen,
+  alarmEnabled,
+  onAlarmEnabledChange,
+  alarmTime,
+  onAlarmTimeChange,
+  alarmTone,
+  onAlarmToneChange,
 }: SettingsDialogProps) {
   const router = useRouter();
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
@@ -71,6 +86,65 @@ export default function SettingsDialog({
                 Stopwatch
               </Button>
             </div>
+          </div>
+
+          <Separator />
+
+          {/* Alarm Settings */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-sm font-medium">
+              <AlarmClock className="w-4 h-4" />
+              <span>Alarm</span>
+            </div>
+
+            {/* Alarm Enabled Toggle */}
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Enable Alarm</span>
+              <Switch
+                checked={alarmEnabled}
+                onCheckedChange={onAlarmEnabledChange}
+              />
+            </div>
+
+            {alarmEnabled && (
+              <>
+                {/* Alarm Time */}
+                <div className="space-y-2">
+                  <label className="text-sm text-muted-foreground">Alarm Time</label>
+                  <Input
+                    type="time"
+                    value={alarmTime}
+                    onChange={(e) => onAlarmTimeChange(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Alarm Tone */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Volume2 className="w-4 h-4" />
+                    <span>Alarm Tone</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { value: 'default' as AlarmTone, label: 'Default' },
+                      { value: 'gentle' as AlarmTone, label: 'Gentle' },
+                      { value: 'classic' as AlarmTone, label: 'Classic' },
+                      { value: 'digital' as AlarmTone, label: 'Digital' },
+                    ].map((tone) => (
+                      <Button
+                        key={tone.value}
+                        variant={alarmTone === tone.value ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => onAlarmToneChange(tone.value)}
+                      >
+                        {tone.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <Separator />
