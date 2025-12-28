@@ -56,19 +56,19 @@ export default function SettingsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-sm transition-all duration-300 ease-out data-[state=closed]:duration-200 data-[state=closed]:ease-in">
-        <DialogHeader className="pb-2 transition-all duration-300 delay-100 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
-          <DialogTitle className="text-lg font-bold transition-all duration-300 data-[state=closed]:duration-200">Settings</DialogTitle>
+      <DialogContent className="max-w-[85vw] sm:max-w-sm mx-auto transition-all duration-300 ease-out data-[state=closed]:duration-200 data-[state=closed]:ease-in">
+        <DialogHeader className="pb-1.5 sm:pb-2 transition-all duration-300 delay-100 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
+          <DialogTitle className="text-base sm:text-lg font-bold transition-all duration-300 data-[state=closed]:duration-200">Settings</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-3 py-2 transition-all duration-300 delay-200 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
+        <div className="space-y-2 sm:space-y-3 py-1.5 sm:py-2 transition-all duration-300 delay-200 data-[state=closed]:delay-0 data-[state=closed]:duration-200">
           {/*View Mode (Time / Stopwatch) */}
-          <div className="space-y-1.5 transition-all duration-300 delay-300 data-[state=closed]:delay-100 data-[state=closed]:duration-200">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Clock className="w-4 h-4" />
+          <div className="space-y-1 transition-all duration-300 delay-300 data-[state=closed]:delay-100 data-[state=closed]:duration-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+              <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>View Mode</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <Button
                 variant={currentPath === '/' ? 'default' : 'outline'}
                 className="flex-1"
@@ -91,15 +91,15 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Alarm Settings */}
-          <div className="space-y-2 transition-all duration-300 delay-[800ms] data-[state=closed]:delay-0 data-[state=closed]:duration-200">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <AlarmClock className="w-4 h-4" />
+          <div className="space-y-1.5 transition-all duration-300 delay-[800ms] data-[state=closed]:delay-0 data-[state=closed]:duration-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+              <AlarmClock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Alarm</span>
             </div>
 
             {/* Alarm Enabled Toggle */}
             <div className="flex items-center justify-between">
-              <span className="text-sm">Enable Alarm</span>
+              <span className="text-xs sm:text-sm">Enable Alarm</span>
               <Switch
                 checked={alarmEnabled}
                 onCheckedChange={onAlarmEnabledChange}
@@ -109,23 +109,23 @@ export default function SettingsDialog({
             {alarmEnabled && (
               <>
                 {/* Alarm Time */}
-                <div className="space-y-1.5">
-                  <label className="text-sm text-muted-foreground">Alarm Time</label>
+                <div className="space-y-1">
+                  <label className="text-xs sm:text-sm text-muted-foreground">Alarm Time</label>
                   <Input
                     type="time"
                     value={alarmTime}
                     onChange={(e) => onAlarmTimeChange(e.target.value)}
-                    className="w-full"
+                    className="w-full text-sm"
                   />
                 </div>
 
                 {/* Alarm Tone */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Volume2 className="w-4 h-4" />
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+                    <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     <span>Alarm Tone</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                     {[
                       { value: 'default' as AlarmTone, label: 'Default' },
                       { value: 'gentle' as AlarmTone, label: 'Gentle' },
@@ -150,12 +150,12 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Theme */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[400ms] data-[state=closed]:delay-75 data-[state=closed]:duration-200">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Moon className="w-4 h-4" />
+          <div className="space-y-1 transition-all duration-300 delay-[400ms] data-[state=closed]:delay-75 data-[state=closed]:duration-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+              <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Theme</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <Button
                 variant={theme === 'light' ? 'default' : 'outline'}
                 className="flex-1"
@@ -178,12 +178,12 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Time Format */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[500ms] data-[state=closed]:delay-50 data-[state=closed]:duration-200">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Clock className="w-4 h-4" />
+          <div className="space-y-1 transition-all duration-300 delay-[500ms] data-[state=closed]:delay-50 data-[state=closed]:duration-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+              <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Time Format</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <Button
                 variant={timeFormat === '12' ? 'default' : 'outline'}
                 className="flex-1"
@@ -204,15 +204,15 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Clock Size */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[600ms] data-[state=closed]:delay-25 data-[state=closed]:duration-200">
+          <div className="space-y-1 transition-all duration-300 delay-[600ms] data-[state=closed]:delay-25 data-[state=closed]:duration-200">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm font-medium">
-                <ZoomIn className="w-4 h-4" />
+              <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+                <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>Clock Size</span>
               </div>
-              <span className="text-sm text-muted-foreground">{clockSize}%</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">{clockSize}%</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <Button
                 variant="outline"
                 size="icon"
@@ -243,12 +243,12 @@ export default function SettingsDialog({
           <Separator />
 
           {/* Fullscreen */}
-          <div className="space-y-1.5 transition-all duration-300 delay-[700ms] data-[state=closed]:delay-10 data-[state=closed]:duration-200">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Maximize2 className="w-4 h-4" />
+          <div className="space-y-1 transition-all duration-300 delay-[700ms] data-[state=closed]:delay-10 data-[state=closed]:duration-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+              <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Display</span>
             </div>
-            <Button variant="outline" className="w-full" onClick={onToggleFullscreen}>
+            <Button variant="outline" className="w-full text-sm" onClick={onToggleFullscreen} size="sm">
               {isFullscreen ? (
                 <>
                   <Minimize2 className="w-4 h-4 mr-2" />
