@@ -314,10 +314,10 @@ export default function FlipClock() {
         >
           {/* Alarm Display */}
           {alarmEnabled && (
-            <div className="mb-6 sm:mb-8 flex items-center justify-center gap-2">
-              <AlarmClock className={`w-5 h-5 sm:w-6 sm:h-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`} />
+            <div className="mb-4 sm:mb-6 md:mb-8 flex items-center justify-center gap-2">
+              <AlarmClock className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`} />
               <div
-                className={`text-sm sm:text-base font-medium transition-colors duration-500 ${
+                className={`text-xs sm:text-sm md:text-base font-medium transition-colors duration-500 ${
                   theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
@@ -327,7 +327,23 @@ export default function FlipClock() {
           )}
 
           {/* Clock Digits */}
-          <div className="flex items-center justify-center gap-0">
+          {/* Mobile Layout - Vertical */}
+          <div className="flex flex-col items-center gap-4 sm:hidden">
+            {/* Hours Row - Mobile */}
+            <div className="flex gap-2">
+              <FlipDigit value={hours[0]} theme={theme} />
+              <FlipDigit value={hours[1]} theme={theme} />
+            </div>
+
+            {/* Minutes Row - Mobile */}
+            <div className="flex gap-2">
+              <FlipDigit value={minutes[0]} theme={theme} />
+              <FlipDigit value={minutes[1]} theme={theme} />
+            </div>
+          </div>
+
+          {/* Desktop Layout - Horizontal */}
+          <div className="hidden sm:flex items-center justify-center gap-0">
             <div className="flex gap-1 sm:gap-3">
               <FlipDigit value={hours[0]} theme={theme} />
               <FlipDigit value={hours[1]} theme={theme} />
@@ -351,17 +367,17 @@ export default function FlipClock() {
             </div>
           </div>
 
-          {/* Period + Date Centered */}
-          <div className="flex flex-col items-center mt-3 sm:mt-2">
+          {/* Period + Date - Smaller on Mobile, Below Clock */}
+          <div className="flex flex-col items-center mt-4 sm:mt-3 md:mt-2">
             <div
-              className={`text-2xl sm:text-3xl font-bold tracking-wide transition-colors duration-500 ${
+              className={`text-lg sm:text-2xl md:text-3xl font-bold tracking-wide transition-colors duration-500 ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}
             >
               {period}
             </div>
             <div
-              className={`text-sm sm:text-base font-sans font-bold mt-1 sm:mt-1 transition-colors duration-500 ${
+              className={`text-xs sm:text-sm md:text-base font-sans font-bold mt-1 transition-colors duration-500 ${
                 theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
               }`}
             >

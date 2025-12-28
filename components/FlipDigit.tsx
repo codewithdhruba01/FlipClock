@@ -31,13 +31,13 @@ export default function FlipDigit({ value, theme }: FlipDigitProps) {
   return (
     <div className="relative" style={{ perspective: '1000px' }}>
       <div
-        className={`w-16 h-24 sm:w-20 sm:h-32 md:w-28 md:h-40 lg:w-32 lg:h-48 rounded-2xl ${bgColor} ${shadowColor} shadow-2xl overflow-hidden border-4 ${borderColor}`}
+        className={`w-20 h-28 sm:w-24 sm:h-36 md:w-28 md:h-40 lg:w-32 lg:h-48 rounded-2xl ${bgColor} ${shadowColor} shadow-2xl overflow-hidden border-4 ${borderColor}`}
         style={{
           boxShadow: `inset 0 0 20px ${theme === 'dark' ? 'rgba(0,0,0,0.8)' : 'rgba(0,0,0,0.1)'}`,
         }}
       >
         <div
-          className={`absolute inset-0 flex items-center justify-center ${textColor} text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-none`}
+          className={`absolute inset-0 flex items-center justify-center ${textColor} text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-9xl font-bold leading-none`}
         >
           <div
             style={{
