@@ -23,13 +23,22 @@ A beautiful, minimal digital clock web application built with Next.js that helps
 ### Customization Options (Available on Both Pages)
 Access all settings by clicking the settings icon at the right corner:
 
-#### 3. Clock Size Control
-- **Zoom In/Out**: Scale the clock from 50% to 150%
+#### 3. Alarm System
+- **Smart Alarm**: Set custom alarm times with multiple tone options
+- **Audio Tones**: Choose from 4 different alarm sounds (Default, Gentle, Classic, Digital)
+- **Auto-Stop**: Alarm automatically stops after 30 seconds
+- **Manual Control**: Stop alarm anytime with dismiss option
+- **Persistent Settings**: Alarm preferences saved locally
+- **Visual Indicator**: Shows active alarm time above clock
+- **Theme Aware**: Alarm modal adapts to dark/light theme
+
+#### 4. Clock Size Control
+- **Zoom In/Out**: Scale the clock from 30% to 250%
 - Use slider for precise control or quick buttons for 10% increments
 - Perfect for different screen sizes and viewing distances
 - Size preference is saved locally
 
-#### 4. Fullscreen Mode
+#### 5. Fullscreen Mode
 - **Enter/Exit Fullscreen**: Maximize the clock to fill your entire screen
 - Ideal for using as a screensaver or presentation timer
 - Toggle easily from the settings panel
@@ -41,6 +50,7 @@ Access all settings by clicking the settings icon at the right corner:
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
+- **Audio**: Web Audio API + WAV files for alarm system
 - **Storage**: Browser LocalStorage for preferences
 
 ## Project Structure
@@ -59,6 +69,13 @@ flipclock/
 │   ├── FlipDigit.tsx           # Flip digit animation component
 │   ├── SettingsDialog.tsx      # Settings panel (shared)
 │   └── ui/                     # shadcn/ui components
+├── public/
+│   ├── alarms/                 # Alarm audio files
+│   │   ├── default.wav         # Default alarm tone
+│   │   ├── gentle.wav          # Gentle alarm tone
+│   │   ├── classic.wav         # Classic alarm tone
+│   │   └── digital.wav         # Digital alarm tone
+│   └── flipclock-cover.png     # Project banner
 └── README.md
 ```
 
@@ -81,6 +98,7 @@ npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
 
 ## Build for Production
 
