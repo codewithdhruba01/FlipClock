@@ -9,6 +9,7 @@ import StyledSettingsButton from './button/StyledSettingsButton';
 
 type TimeFormat = '12' | '24';
 type Theme = 'light' | 'dark';
+type AlarmTone = 'default' | 'gentle' | 'classic' | 'digital';
 
 export default function Stopwatch() {
   const [elapsed, setElapsed] = useState(0);
@@ -18,6 +19,9 @@ export default function Stopwatch() {
   const [timeFormat, setTimeFormat] = useState<TimeFormat>('12');
   const [clockSize, setClockSize] = useState(100);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [alarmEnabled, setAlarmEnabled] = useState(false);
+  const [alarmTime, setAlarmTime] = useState('07:00');
+  const [alarmTone, setAlarmTone] = useState<AlarmTone>('default');
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -34,9 +38,15 @@ export default function Stopwatch() {
     const savedTheme = localStorage.getItem('theme') as Theme;
     const savedFormat = localStorage.getItem('timeFormat') as TimeFormat;
     const savedSize = localStorage.getItem('clockSize');
+    const savedAlarmEnabled = localStorage.getItem('alarmEnabled');
+    const savedAlarmTime = localStorage.getItem('alarmTime');
+    const savedAlarmTone = localStorage.getItem('alarmTone') as AlarmTone;
     if (savedTheme) setTheme(savedTheme);
     if (savedFormat) setTimeFormat(savedFormat);
     if (savedSize) setClockSize(Number(savedSize));
+    if (savedAlarmEnabled) setAlarmEnabled(savedAlarmEnabled === 'true');
+    if (savedAlarmTime) setAlarmTime(savedAlarmTime);
+    if (savedAlarmTone) setAlarmTone(savedAlarmTone);
   }, []);
 
   // Fullscreen check
@@ -70,6 +80,21 @@ export default function Stopwatch() {
   const handleClockSizeChange = (newSize: number) => {
     setClockSize(newSize);
     localStorage.setItem('clockSize', newSize.toString());
+  };
+
+  const handleAlarmEnabledChange = (enabled: boolean) => {
+    setAlarmEnabled(enabled);
+    localStorage.setItem('alarmEnabled', enabled.toString());
+  };
+
+  const handleAlarmTimeChange = (time: string) => {
+    setAlarmTime(time);
+    localStorage.setItem('alarmTime', time);
+  };
+
+  const handleAlarmToneChange = (tone: AlarmTone) => {
+    setAlarmTone(tone);
+    localStorage.setItem('alarmTone', tone);
   };
 
   const getFormattedTime = () => {
@@ -172,6 +197,12 @@ export default function Stopwatch() {
         isFullscreen={isFullscreen}
         onToggleFullscreen={toggleFullscreen}
         onOpenStopwatch={() => {}}
+        alarmEnabled={alarmEnabled}
+        onAlarmEnabledChange={handleAlarmEnabledChange}
+        alarmTime={alarmTime}
+        onAlarmTimeChange={handleAlarmTimeChange}
+        alarmTone={alarmTone}
+        onAlarmToneChange={handleAlarmToneChange}
       />
     </div>
   );
