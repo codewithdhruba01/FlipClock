@@ -66,21 +66,38 @@ export default function FlipClock() {
     const now = new Date();
     const currentHours = now.getHours();
     const currentMinutes = now.getMinutes();
+    const currentSeconds = now.getSeconds();
 
-    // Compare in the same format as the clock displays
-    let displayHours = currentHours;
-    if (timeFormat === '12') {
-      displayHours = displayHours % 12 || 12;
-    }
+    // Convert alarm time to 24-hour format for comparison
+    const [alarmHourStr, alarmMinuteStr] = alarmTime.split(':');
+    let alarmHours24 = parseInt(alarmHourStr);
+    const alarmMinutes = parseInt(alarmMinuteStr);
 
-    const currentTime = `${displayHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
-    const isAlarmTime = currentTime === alarmTime;
+    // If alarm time was set in 12-hour format, convert to 24-hour
+    // Assume AM if hours < 12, PM if hours >= 12 (this is a limitation)
+    // For better UX, we should store AM/PM indicator separately
+
+    // Compare in 24-hour format to avoid format confusion
+    const currentTime24 = `${currentHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
+    const alarmTime24 = `${alarmHours24.toString().padStart(2, '0')}:${alarmMinutes.toString().padStart(2, '0')}`;
+
+    const isAlarmTime = currentTime24 === alarmTime24 && currentSeconds === 0;
+
+    console.log('Alarm check:', {
+      currentTime24,
+      alarmTime24,
+      currentSeconds,
+      isAlarmTime,
+      alarmEnabled,
+      alarmRinging
+    });
 
     if (isAlarmTime && !alarmRinging) {
+      console.log('🚨 ALARM TRIGGERING!');
       setAlarmRinging(true);
       playAlarmSound();
     }
-  }, [time, alarmEnabled, alarmTime, alarmRinging, timeFormat]); // Include 'time' to run every second
+  }, [time, alarmEnabled, alarmTime, alarmRinging]);
 
   const toggleFullscreen = async () => {
     if (!document.fullscreenElement) {
@@ -121,9 +138,12 @@ export default function FlipClock() {
   };
 
   const playAlarmSound = async () => {
+    console.log('🔊 playAlarmSound called with tone:', alarmTone);
+
     try {
       // First try to play the actual audio file
       const audioFile = `/alarms/${alarmTone}.wav`;
+      console.log('🎵 Loading audio file:', audioFile);
 
       const audio = new Audio(audioFile);
       currentAlarmAudioRef.current = audio;
@@ -132,32 +152,42 @@ export default function FlipClock() {
 
       // Set up event listeners
       audio.addEventListener('canplaythrough', async () => {
+        console.log('🎵 Audio file loaded successfully');
         try {
           await audio.play();
+          console.log('🎵 Alarm audio playing successfully');
 
           // Auto-stop after 30 seconds
           (window as any).alarmTimeoutId = setTimeout(() => {
             if (alarmRinging) {
+              console.log('⏰ Auto-stopping alarm after 30 seconds');
               stopAlarm();
             }
           }, 30000);
 
         } catch (playError) {
-          console.error('Audio play failed, using fallback');
+          console.error('❌ Audio play failed:', playError);
+          console.log('Falling back to Web Audio API beeps');
           playFallbackBeeps();
         }
       });
 
-      audio.addEventListener('error', () => {
-        console.error('Audio file failed to load, using fallback');
+      audio.addEventListener('error', (errorEvent) => {
+        console.error('❌ Audio file failed to load:', errorEvent);
+        console.log('Using Web Audio API fallback');
         playFallbackBeeps();
       });
 
+      audio.addEventListener('loadstart', () => console.log('🎵 Audio load started'));
+      audio.addEventListener('loadeddata', () => console.log('🎵 Audio data loaded'));
+
       // Start loading the audio
+      console.log('🎵 Starting audio load...');
       audio.load();
 
     } catch (error) {
-      console.error('❌ Audio setup failed, using fallback:', error);
+      console.error('❌ Audio setup failed:', error);
+      console.log('Using Web Audio API fallback');
       playFallbackBeeps();
     }
   };
